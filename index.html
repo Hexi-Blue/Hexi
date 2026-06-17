@@ -1,185 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Tutoring Program</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 0; background-color: #f4f6f8; color: #333; }
-        header { background-color: #000000; color: white; padding: 20px; text-align: center; }
-        nav { background-color: #1b1b1c; padding: 10px; text-align: center; }
-        nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
-        nav a:hover { text-decoration: underline; }
-        .container { max-width: 900px; margin: 30px auto; padding: 20px; background: white; border-radius: 8px; }
-        h2 { color: #000000; }
-        .card { background: #f9fafb; padding: 15px; margin: 15px 0; border-left: 5px solid #353637; }
-        footer { text-align: center; padding: 15px; background-color: #e2e8f0; margin-top: 40px; font-size: 14px; }
-        button { background-color: #0a0a0a; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; }
-        button:hover { background-color: #393939; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- EDIT THIS: the text shown in the browser tab -->
+  <title>Hexi — Minecraft Mods</title>
+
+  <link rel="stylesheet" href="./style.css">
 </head>
+
 <body>
+  <!-- ===================== HEADER / HERO ===================== -->
+  <header class="hero">
+    <p class="eyebrow">Minecraft mods by</p>
+    <h1 class="logo">HEXI</h1>
+    <p class="tagline">Client-side mods that change how Minecraft looks and feels.</p>
 
-<header>
-    <h1>Self Led Tutoring Program</h1>
-</header>
+    <!-- EDIT THIS: paste your Modrinth PROFILE link between the quotes -->
+    <a class="button" href="#" target="_blank" rel="noopener">View all on Modrinth</a>
+  </header>
 
-<nav>
-    <a href="#about">About</a>
-    <a href="#aboutme">About Me</a>
-    <a href="#subjects">Subjects</a>
-    <a href="#signup">Sign Up</a>
-    <a href="#contact">Contact</a>
-</nav>
+  <!-- ===================== MODS ===================== -->
+  <main class="mods">
 
-<div class="container">
-<section id="about">
-    <h2>About the Program</h2>
-    <p>This self-led tutoring program was made by myself, in order to increase my leadership skills, confidence and improve my applications for Universities.</p>
-</section>
+    <!-- ---------- MOD 1 ---------- -->
+    <article class="card">
+      <div class="card-tag">Client</div>
+      <h2 class="card-title">Dark Client</h2>
+      <p class="card-desc">
+        <!-- EDIT THIS: describe what Dark Client does -->
+        A sleek dark-themed client built to make Minecraft cleaner and easier on the eyes.
+      </p>
+      <div class="card-meta">
+        <!-- EDIT THIS: your real numbers, or delete the spans you don't want -->
+        <span>⬇ <strong>—</strong> downloads</span>
+        <span>🧩 Fabric</span>
+      </div>
+      <!-- EDIT THIS: paste the Modrinth link for Dark Client -->
+      <a class="card-link" href="#" target="_blank" rel="noopener">Download on Modrinth →</a>
+    </article>
 
-<section id="aboutme">
-    <h2>About Me</h2>
-    <p>Hello, my name is Ayan Emre Cakir, I'm in Year 9 or Grade 8, I love sports such as Triathlons, Cycling, Swimming, Running, Padel, Badminton and Basketball. I have always wanted to help others, teach others and help with achieving goals.</p>
-</section>
+    <!-- ---------- MOD 2 ---------- -->
+    <article class="card">
+      <div class="card-tag">Cosmetic</div>
+      <h2 class="card-title">Custom Capes</h2>
+      <p class="card-desc">
+        <!-- EDIT THIS: describe what Custom Capes does -->
+        Wear your own custom capes in-game. Full control over your look, client-side.
+      </p>
+      <div class="card-meta">
+        <span>⬇ <strong>—</strong> downloads</span>
+        <span>🧩 Fabric</span>
+      </div>
+      <!-- EDIT THIS: paste the Modrinth link for Custom Capes -->
+      <a class="card-link" href="#" target="_blank" rel="noopener">Download on Modrinth →</a>
+    </article>
 
-<section id="subjects">
-    <h2>Subjects Offered</h2>
-    <div class="card"><h3>📘 Math</h3><p>Algebra, Geometry and more: Dependent on your child's Year Group and what they want to pursue and learn.</p></div>
-</section>
+  </main>
 
-<section id="signup">
-    <h2>Sign Up</h2>
-    <p>Fill in the form below. When you submit, it will open your email app and send the details including a pricing breakdown.</p>
-    <p>Every 5 sessions includes a free session with your purchase, 5 = 1 free session, 10 = 2 free sessions, and so on.</p>
-    <p>Maximum of 20 sessions per purchase. To buy more, you must use up your current amount purchased.</p>
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <p>Made by Hexi · <span id="year"></span></p>
+  </footer>
 
-    <form id="signup-form" method="post">
-        <div class="card">
-            <label for="name"><strong>Student Name</strong></label><br>
-            <input type="text" id="name" name="Student Name" required style="width:100%; padding:8px; margin-top:5px;">
-        </div>
-
-
-
-        <div class="card">
-            <label for="year"><strong>Student Year (Year 7 or below)</strong></label><br>
-            <select id="year" name="Student Year" required style="width:100%; padding:8px; margin-top:5px;">
-                <option value="">Select Year</option>
-                <option value="Year 1">Year 1</option>
-                <option value="Year 2">Year 2</option>
-                <option value="Year 3">Year 3</option>
-                <option value="Year 4">Year 4</option>
-                <option value="Year 5">Year 5</option>
-                <option value="Year 6">Year 6</option>
-                <option value="Year 7">Year 7</option>
-            </select>
-        </div>
-
-        <div class="card">
-            <strong>Area of Residence</strong><br><br>
-            <label><input type="radio" name="Area of Residence" value="Arabian Ranches 2" id="ar2"> Arabian Ranches 2</label>
-            <span id="home-ok" style="margin-left:10px; color:#2b6cb0; font-weight:bold; display:none;">✔ Applicable for in-person tutoring payment can be cash</span>
-            <br><br>
-            <label><input type="radio" name="Area of Residence" value="Other" id="other"> Other</label>
-        </div>
-
-        <div class="card" id="bank-payment" style="display:none;">
-            <label for="clientsphonen"><strong>Payment</strong></label><br>
-            <p>Please enter your phone number for payment details</p>
-            <p>If this is your first time, I reccommend first reaching out to me via my phone number at the bottom of the webpage and we shall exchange a free trial session whenever I am available. If you would like to book some sessions after the trial please come back to this website to select timings and number of sessions.</p>
-            <input type="text" id="clientsphone" name="clientsphone" placeholder="Enter your phone number here" style="width:100%; padding:8px; margin-top:5px;">
-        </div>
-
-        <div class="card">
-            <label for="session-time"><strong>Preferred Session Date & Time</strong></label><br>
-            <input type="text" id="session-time" name="Session Date and Time" placeholder="Example: Monday 1st February, 3:00 PM" required style="width:100%; padding:8px; margin-top:5px;">
-        </div>
-
-        <div class="card">
-            <label for="sessions"><strong>Number of Sessions</strong></label><br>
-            <input type="number" id="sessions" name="Number of Sessions" min="1" max="20" required style="width:100%; padding:8px; margin-top:5px;">
-            <p style="margin-top:10px;"><strong>Sessions per week:</strong><br>
-                <label><input type="radio" name="Sessions Per Week" value="1" checked> 1 per week</label>&nbsp;&nbsp;
-                <label><input type="radio" name="Sessions Per Week" value="2"> 2 per week</label>
-            </p>
-        </div>
-
-        <button type="submit">Submit Sign-Up</button>
-
-        <p id="price-info" style="margin-top:15px; font-weight:bold; color:#000000;">
-            Session Price: 25 AED per session (1 hour)<br>
-            Total Price: 0 AED
-        </p>
-    </form>
-</section>
-
-<section id="contact">
-    <h2>Contact</h2>
-    <p>Email: ayanstutoring.club@outlook.com</p>
-    <p>Phone: +971 50 835 3477</p>
-    <p>Payment can be discussed over email or text if there is an error.</p>
-</section>
-
-</div>
-<footer>© Made By Ayan Emre Cakir</footer>
-
-<script>
-    const ar2 = document.getElementById('ar2');
-    const other = document.getElementById('other');
-    const homeOk = document.getElementById('home-ok');
-    const bankPayment = document.getElementById('bank-payment');
-
-    ar2.addEventListener('change', () => { 
-        homeOk.style.display = 'inline';
-        bankPayment.style.display = 'block';
-    });
-
-    other.addEventListener('change', () => { 
-        homeOk.style.display = 'none';
-        bankPayment.style.display = 'block';
-    });
-
-    const sessionsInput = document.getElementById('sessions');
-    const priceInfo = document.getElementById('price-info');
-    const form = document.getElementById('signup-form');
-    const pricePerSession = 25;
-
-    sessionsInput.addEventListener('input', () => {
-        const sessions = Number(sessionsInput.value);
-        const freeSessions = Math.floor(sessions / 5);
-        const paidSessions = sessions;
-        const totalSessions = paidSessions + freeSessions;
-        const totalPrice = paidSessions * pricePerSession;
-
-        if (sessions > 0) {
-            priceInfo.innerHTML = `Session Price: 25 AED per session (1 hour)<br>
-                                    Paid Sessions: ${paidSessions}<br>
-                                    Free Sessions: ${freeSessions}<br>
-                                    <strong>Total Sessions: ${totalSessions}</strong><br>
-                                    <strong>Total Price: ${totalPrice} AED</strong>`;
-        } else {
-            priceInfo.innerHTML = 'Session Price: 25 AED per session (1 hour)<br>Total Price: 0 AED';
-        }
-    });
-
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const name = document.getElementById('name').value;
-        const year = document.getElementById('year').value;
-        const area = document.querySelector('input[name="Area of Residence"]:checked')?.value || '';
-        const phone = document.getElementById('clientsphone')
-        const sessionTime = document.getElementById('session-time').value;
-        const sessions = Number(sessionsInput.value);
-        const freeSessions = Math.floor(sessions / 5);
-        const totalSessions = sessions + freeSessions;
-        const totalPrice = sessions * pricePerSession;
-        const perWeek = document.querySelector('input[name="Sessions Per Week"]:checked')?.value || '1';
-
-        const emailBody = encodeURIComponent(`Student Name: ${name}\nStudent Year: ${year}\nArea of Residence: ${area}\nParents Phone Number: ${phone}Preferred Session Date & Time: ${sessionTime}\nSessions per Week: ${perWeek}\nPaid Sessions: ${sessions}\nFree Sessions: ${freeSessions}\nTotal Sessions: ${totalSessions}\nTotal Price: ${totalPrice} AED\n`);
-        window.location.href = `mailto:ayanstutoring.club@outlook.com?subject=Tutoring Sign-Up&body=${emailBody}`;
-    });
-</script>
-
+  <script src="./script.js"></script>
 </body>
 </html>
