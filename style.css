@@ -147,3 +147,45 @@ body {
   font-size: 0.85rem;
   padding: 56px 24px 40px;
 }
+
+/* ============================================
+   Added: mod icons, support banner, view counter
+   ============================================ */
+
+/* Mod icon at the top of each card */
+.card-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  margin-bottom: 14px;
+  display: block;
+  image-rendering: pixelated;   /* keeps pixel-art icons crisp */
+}
+
+/* "Loading…" / fallback text in the mods area */
+.status {
+  grid-column: 1 / -1;          /* span the whole row */
+  text-align: center;
+  color: var(--muted);
+  padding: 24px;
+}
+
+/* Support message band */
+.support {
+  text-align: center;
+  max-width: 620px;
+  margin: 8px auto 0;
+  padding: 22px 24px;
+  color: var(--text);
+  font-size: 1.05rem;
+  background: rgba(79, 156, 255, 0.08);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+
+/* View counter in the footer */
+.views {
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
