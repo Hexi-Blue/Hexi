@@ -1,0 +1,149 @@
+/* ============================================
+   Hexi — mod showcase styling.
+   Colors live at the top. Change them and refresh.
+   ============================================ */
+
+:root {
+  --bg:       #0a0c12;   /* near-black background */
+  --surface:  #141826;   /* the mod cards */
+  --border:   #232a3d;   /* card edges */
+  --accent:   #4f9cff;   /* Hexi blue */
+  --accent-2: #8a5bff;   /* secondary purple glow */
+  --text:     #f1f4fb;   /* main text */
+  --muted:    #8a93ac;   /* dim text */
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* ---------- HERO ---------- */
+.hero {
+  text-align: center;
+  padding: 96px 24px 72px;
+  background:
+    radial-gradient(700px 320px at 50% 0%, rgba(79,156,255,0.18), transparent),
+    radial-gradient(500px 300px at 80% 10%, rgba(138,91,255,0.12), transparent);
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+/* Blocky monospace logo — a nod to Minecraft without using its assets */
+.logo {
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: clamp(3rem, 12vw, 6rem);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  background: linear-gradient(120deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.tagline {
+  color: var(--muted);
+  max-width: 460px;
+  margin: 16px auto 32px;
+  font-size: 1.1rem;
+}
+
+/* ---------- BUTTON ---------- */
+.button {
+  display: inline-block;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--bg);
+  background: var(--accent);
+  padding: 12px 28px;
+  border-radius: 8px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(79,156,255,0.4);
+}
+.button:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ---------- MOD CARDS ---------- */
+.mods {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+}
+
+.card-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  background: rgba(79,156,255,0.12);
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+}
+
+.card-title {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+}
+
+.card-desc {
+  color: var(--muted);
+  margin-bottom: 18px;
+}
+
+.card-meta {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+.card-meta strong { color: var(--text); }
+
+.card-link {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+.card-link:hover { text-decoration: underline; }
+
+/* ---------- FOOTER ---------- */
+.footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+  padding: 56px 24px 40px;
+}
