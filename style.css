@@ -312,3 +312,36 @@ body {
   text-align: center;
   min-height: 1.1em;
 }
+
+/* Speech bubble prompt above the report button */
+.report-bubble {
+  position: fixed;
+  bottom: 94px;
+  right: 12px;
+  background: var(--text);
+  color: var(--bg);
+  border-radius: 10px;
+  padding: 9px 14px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+  z-index: 101;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.report-bubble.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.report-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -7px;
+  right: 22px;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 7px solid var(--text);
+}

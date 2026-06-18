@@ -127,6 +127,7 @@ const REPORT_CD_MS  = 10 * 60 * 1000;
 const REPORT_CD_KEY = "report-last-sent";
 
 const reportBtn    = document.getElementById("reportBtn");
+const reportBubble = document.getElementById("reportBubble");
 const reportPanel  = document.getElementById("reportPanel");
 const reportClose  = document.getElementById("reportClose");
 const reportForm   = document.getElementById("reportForm");
@@ -134,6 +135,12 @@ const reportSubmit = document.getElementById("reportSubmit");
 const reportStatus = document.getElementById("reportStatus");
 
 let cdTimer = null;
+
+// Show the speech bubble 1s after load, auto-dismiss after 5s
+setTimeout(() => {
+  reportBubble.classList.add("visible");
+  setTimeout(() => reportBubble.classList.remove("visible"), 5000);
+}, 1000);
 
 function msLeft() {
   const last = parseInt(localStorage.getItem(REPORT_CD_KEY) || "0", 10);
@@ -160,6 +167,7 @@ function tickCooldown() {
 }
 
 reportBtn.addEventListener("click", () => {
+  reportBubble.classList.remove("visible");
   const opening = reportPanel.hidden;
   reportPanel.hidden = !opening;
   if (opening) tickCooldown();
