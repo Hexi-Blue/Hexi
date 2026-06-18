@@ -54,13 +54,21 @@ async function loadMods() {
       desc.textContent = p.description;
       card.appendChild(desc);
 
-      // Meta row: downloads + loader
+      // Meta row: downloads + loader + MC version + last updated
       const meta = document.createElement("div");
       meta.className = "card-meta";
       const loader = (p.loaders && p.loaders[0]) ? p.loaders[0] : "Fabric";
+      const latestVersion = p.game_versions && p.game_versions.length
+        ? p.game_versions[p.game_versions.length - 1]
+        : null;
+      const updatedDate = p.updated
+        ? new Date(p.updated).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })
+        : null;
       meta.innerHTML =
         `<span>⬇ <strong>${p.downloads.toLocaleString()}</strong> downloads</span>` +
-        `<span>🧩 ${loader.charAt(0).toUpperCase() + loader.slice(1)}</span>`;
+        `<span>🧩 ${loader.charAt(0).toUpperCase() + loader.slice(1)}</span>` +
+        (latestVersion ? `<span>🎮 MC ${latestVersion}</span>` : "") +
+        (updatedDate ? `<span>🕒 Updated ${updatedDate}</span>` : "");
       card.appendChild(meta);
 
       // Download link
