@@ -119,3 +119,106 @@ async function countView() {
   }
 }
 countView();
+
+
+/* ---------- 4. Bug / feedback report widget ---------- */
+const WEBHOOK_URL   = "https://discord.com/api/webhooks/1517045893914693724/shAfSPEEKQ3V9bxEesXpwfSCFNE1ako_lZqdRQia-r5-WKz7qV3e6ncOVCVuba5_Zllg";
+const REPORT_CD_MS  = 10 * 60 * 1000;
+const REPORT_CD_KEY = "report-last-sent";
+
+const reportBtn    = document.getElementById("reportBtn");
+const reportPanel  = document.getElementById("reportPanel");
+const reportClose  = document.getElementById("reportClose");
+const reportForm   = document.getElementById("reportForm");
+const reportSubmit = document.getElementById("reportSubmit");
+const reportStatus = document.getElementById("reportStatus");
+
+let cdTimer = null;
+
+function msLeft() {
+  const last = parseInt(localStorage.getItem(REPORT_CD_KEY) || "0", 10);
+  return Math.max(0, REPORT_CD_MS - (Date.now() - last));
+}
+
+function fmtMs(ms) {
+  const m = Math.floor(ms / 60000);
+  const s = Math.ceil((ms % 60000) / 1000);
+  return m > 0 ? `${m}m ${s}s` : `${s}s`;
+}
+
+function tickCooldown() {
+  clearTimeout(cdTimer);
+  const rem = msLeft();
+  if (rem > 0) {
+    reportSubmit.disabled = true;
+    reportStatus.style.color = "";
+    reportStatus.textContent = `⏳ Wait ${fmtMs(rem)} before sending again.`;
+    cdTimer = setTimeout(tickCooldown, 1000);
+  } else {
+    reportSubmit.disabled = false;
+  }
+}
+
+reportBtn.addEventListener("click", () => {
+  const opening = reportPanel.hidden;
+  reportPanel.hidden = !opening;
+  if (opening) tickCooldown();
+});
+
+reportClose.addEventListener("click", () => {
+  reportPanel.hidden = true;
+  clearTimeout(cdTimer);
+});
+
+document.addEventListener("click", (e) => {
+  if (!reportPanel.hidden && !reportPanel.contains(e.target) && e.target !== reportBtn) {
+    reportPanel.hidden = true;
+    clearTimeout(cdTimer);
+  }
+});
+
+reportForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  if (msLeft() > 0) return;
+
+  const type  = document.getElementById("reportType").value;
+  const title = document.getElementById("reportTitle").value.trim();
+  const desc  = document.getElementById("reportDesc").value.trim();
+  if (!title || !desc) return;
+
+  const labels = { bug: "🐛 Bug", feedback: "💬 Feedback", other: "📝 Other" };
+  const colors = { bug: 0xe74c3c, feedback: 0x4f9cff, other: 0x8a5bff };
+
+  reportSubmit.disabled = true;
+  reportStatus.style.color = "";
+  reportStatus.textContent = "Sending…";
+
+  try {
+    const res = await fetch(WEBHOOK_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        embeds: [{
+          title: `${labels[type]}: ${title}`,
+          description: desc,
+          color: colors[type],
+          footer: { text: `hexi-site report · ${new Date().toUTCString()}` }
+        }]
+      })
+    });
+
+    if (res.ok || res.status === 204) {
+      localStorage.setItem(REPORT_CD_KEY, String(Date.now()));
+      reportForm.reset();
+      reportStatus.style.color = "var(--accent)";
+      reportStatus.textContent = "✅ Sent — thanks!";
+      setTimeout(tickCooldown, 2500);
+    } else {
+      throw new Error("non-2xx");
+    }
+  } catch {
+    reportStatus.style.color = "#e74c3c";
+    reportStatus.textContent = "❌ Couldn't send — try again.";
+    reportSubmit.disabled = false;
+  }
+});

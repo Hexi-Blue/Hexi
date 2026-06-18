@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hexi — Minecraft Mods</title>
-  <link rel="stylesheet" href="./style.css?v=3">
+  <link rel="stylesheet" href="./style.css?v=4">
 </head>
 
 <body>
@@ -34,6 +34,29 @@
     <p>Made by Hexi · <span id="year"></span></p>
   </footer>
 
-  <script src="./script.js?v=3"></script>
+  <!-- Bug report / feedback widget -->
+  <button class="report-btn" id="reportBtn" title="Report a bug or leave feedback">🐛</button>
+  <div class="report-panel" id="reportPanel" hidden>
+    <div class="report-panel-header">
+      <h3>Bug Report / Feedback</h3>
+      <button class="report-close" id="reportClose" aria-label="Close">✕</button>
+    </div>
+    <form id="reportForm" novalidate>
+      <label for="reportType">Type</label>
+      <select id="reportType">
+        <option value="bug">🐛 Bug report</option>
+        <option value="feedback">💬 Feedback</option>
+        <option value="other">📝 Other</option>
+      </select>
+      <label for="reportTitle">Title</label>
+      <input id="reportTitle" type="text" placeholder="Short summary…" maxlength="100" required>
+      <label for="reportDesc">Description</label>
+      <textarea id="reportDesc" placeholder="What happened? Mod name, Minecraft version, steps to reproduce…" maxlength="1000" required></textarea>
+      <button class="report-submit" id="reportSubmit" type="submit">Send Report</button>
+      <p class="report-status" id="reportStatus"></p>
+    </form>
+  </div>
+
+  <script src="./script.js?v=4"></script>
 </body>
 </html>
