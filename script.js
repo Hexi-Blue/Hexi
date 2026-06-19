@@ -230,10 +230,16 @@ reportForm.addEventListener("submit", async (e) => {
       reportStatus.style.color = "var(--accent)";
       reportStatus.textContent = "✅ Sent — thanks!";
       setTimeout(tickCooldown, 2500);
+    } else if (res.status === 429) {
+      const now = Date.now();
+      _lastSentMs = now;
+      localStorage.setItem(REPORT_CD_KEY, String(now));
+      sessionStorage.setItem(REPORT_CD_KEY, String(now));
+      tickCooldown();
     } else {
       throw new Error("non-2xx");
     }
-  } catch {
+  } catch (e) {
     reportStatus.style.color = "#e74c3c";
     reportStatus.textContent = "❌ Couldn't send — try again.";
     reportSubmit.disabled = false;
