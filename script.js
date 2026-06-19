@@ -124,8 +124,9 @@ countView();
 
 
 /* ---------- 4. Bug / feedback report widget ---------- */
-const WEBHOOK_URL   = "https://discord.com/api/webhooks/1517045893914693724/shAfSPEEKQ3V9bxEesXpwfSCFNE1ako_lZqdRQia-r5-WKz7qV3e6ncOVCVuba5_Zllg";
-const REPORT_CD_MS  = 10 * 60 * 1000;
+// Point this at your deployed Cloudflare Worker URL (see worker.js).
+const REPORT_ENDPOINT = "https://hexi-report-proxy.YOURNAME.workers.dev";
+const REPORT_CD_MS    = 10 * 60 * 1000;
 const REPORT_CD_KEY = "report-last-sent";
 
 const reportBtn    = document.getElementById("reportBtn");
@@ -207,7 +208,7 @@ reportForm.addEventListener("submit", async (e) => {
   reportStatus.textContent = "Sending…";
 
   try {
-    const res = await fetch(WEBHOOK_URL, {
+    const res = await fetch(REPORT_ENDPOINT, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
