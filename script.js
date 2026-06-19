@@ -125,7 +125,7 @@ countView();
 
 /* ---------- 4. Bug / feedback report widget ---------- */
 // Point this at your deployed Cloudflare Worker URL (see worker.js).
-const REPORT_ENDPOINT = "https://hexi-report-proxy.YOURNAME.workers.dev";
+const REPORT_ENDPOINT = "https://hexi-report-proxy.ayanemrecakir.workers.dev";
 const REPORT_CD_MS    = 10 * 60 * 1000;
 const REPORT_CD_KEY = "report-last-sent";
 
