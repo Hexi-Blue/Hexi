@@ -143,7 +143,9 @@ setTimeout(() => {
 }, 1000);
 
 function msLeft() {
-  const last = parseInt(localStorage.getItem(REPORT_CD_KEY) || "0", 10);
+  const fromLocal   = parseInt(localStorage.getItem(REPORT_CD_KEY)   || "0", 10);
+  const fromSession = parseInt(sessionStorage.getItem(REPORT_CD_KEY) || "0", 10);
+  const last = Math.max(fromLocal, fromSession);
   return Math.max(0, REPORT_CD_MS - (Date.now() - last));
 }
 
@@ -216,7 +218,9 @@ reportForm.addEventListener("submit", async (e) => {
     });
 
     if (res.ok || res.status === 204) {
-      localStorage.setItem(REPORT_CD_KEY, String(Date.now()));
+      const now = String(Date.now());
+      localStorage.setItem(REPORT_CD_KEY, now);
+      sessionStorage.setItem(REPORT_CD_KEY, now);
       reportForm.reset();
       reportStatus.style.color = "var(--accent)";
       reportStatus.textContent = "✅ Sent — thanks!";

@@ -60,6 +60,13 @@ body {
 }
 
 /* ---------- BUTTON ---------- */
+.hero-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 .button {
   display: inline-block;
   font-weight: 600;
@@ -77,6 +84,12 @@ body {
 .button:focus-visible {
   outline: 3px solid var(--accent);
   outline-offset: 3px;
+}
+.button-discord {
+  background: var(--accent-2);
+}
+.button-discord:hover {
+  box-shadow: 0 12px 28px rgba(138,91,255,0.4);
 }
 
 /* ---------- MOD CARDS ---------- */
