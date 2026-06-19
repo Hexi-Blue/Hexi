@@ -105,17 +105,19 @@ const KEY = "page-views";           // the counter's name
 
 async function countView() {
   try {
-    // Only add +1 once per browsing session, then just read the total
     const firstVisit = !sessionStorage.getItem("counted");
-    const action = firstVisit ? "up" : "";   // "up" adds 1; "" just reads
-    const res = await fetch(`https://api.counterapi.dev/v1/${NS}/${KEY}/${action}`);
+    const url = firstVisit
+      ? `https://api.counterapi.dev/v1/${NS}/${KEY}/up`
+      : `https://api.counterapi.dev/v1/${NS}/${KEY}`;
+    const res = await fetch(url);
+    if (!res.ok) throw new Error("counter error");
     const data = await res.json();
     if (firstVisit) sessionStorage.setItem("counted", "1");
 
     const n = data.count ?? data.Count ?? data.value ?? 0;
     viewsEl.textContent = `👁 ${Number(n).toLocaleString()} views`;
   } catch (err) {
-    viewsEl.textContent = "";   // hide it if the service is unreachable
+    viewsEl.textContent = "👁 views";
   }
 }
 countView();
