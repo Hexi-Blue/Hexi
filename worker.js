@@ -40,7 +40,8 @@ async function handle(request, env) {
     return new Response("DISCORD_WEBHOOK secret not configured", { status: 500, headers: corsHeaders });
   }
 
-  if (env.RATE_LIMIT) {
+  var kvOk = env.RATE_LIMIT && typeof env.RATE_LIMIT.get === "function";
+  if (kvOk) {
     var ip = request.headers.get("CF-Connecting-IP") || "unknown";
     var hit = await env.RATE_LIMIT.get("rl:" + ip);
     if (hit) {
@@ -64,7 +65,7 @@ async function handle(request, env) {
     body: JSON.stringify(payload),
   });
 
-  if ((discordRes.ok || discordRes.status === 204) && env.RATE_LIMIT) {
+  if ((discordRes.ok || discordRes.status === 204) && kvOk) {
     var ip2 = request.headers.get("CF-Connecting-IP") || "unknown";
     await env.RATE_LIMIT.put("rl:" + ip2, "1", { expirationTtl: COOLDOWN_SEC });
   }
