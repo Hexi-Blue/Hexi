@@ -135,6 +135,7 @@ const reportSubmit = document.getElementById("reportSubmit");
 const reportStatus = document.getElementById("reportStatus");
 
 let cdTimer = null;
+let _lastSentMs = 0; // in-memory; survives storage.clear() for the lifetime of the page
 
 // Show the speech bubble 1s after load, auto-dismiss after 5s
 setTimeout(() => {
@@ -145,7 +146,7 @@ setTimeout(() => {
 function msLeft() {
   const fromLocal   = parseInt(localStorage.getItem(REPORT_CD_KEY)   || "0", 10);
   const fromSession = parseInt(sessionStorage.getItem(REPORT_CD_KEY) || "0", 10);
-  const last = Math.max(fromLocal, fromSession);
+  const last = Math.max(_lastSentMs, fromLocal, fromSession);
   return Math.max(0, REPORT_CD_MS - (Date.now() - last));
 }
 
@@ -218,9 +219,10 @@ reportForm.addEventListener("submit", async (e) => {
     });
 
     if (res.ok || res.status === 204) {
-      const now = String(Date.now());
-      localStorage.setItem(REPORT_CD_KEY, now);
-      sessionStorage.setItem(REPORT_CD_KEY, now);
+      const now = Date.now();
+      _lastSentMs = now;
+      localStorage.setItem(REPORT_CD_KEY, String(now));
+      sessionStorage.setItem(REPORT_CD_KEY, String(now));
       reportForm.reset();
       reportStatus.style.color = "var(--accent)";
       reportStatus.textContent = "✅ Sent — thanks!";
